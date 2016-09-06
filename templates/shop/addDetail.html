@@ -1,0 +1,70 @@
+<button ng-click="addLine();" class="btn btn-primary">新增书本</button>
+<table class="table table-bordered">
+	<tr class="info">
+		<th>产品类型</th>
+		<th>名称</th>
+		<th>规格</th>
+		<th>数量</th>
+		<th>单价</th>
+		<th>总价</th>
+		<th>操作</th>
+	</tr>
+	<tr ng-repeat="detail in details">
+		<td >
+			<select class="form-control" ng-model="detail.type"  ng-options="t.categoryId as t.categoryName for t in ptypes">
+				<option value="">-产品类型-</option>
+			</select>
+		</td>
+		<td >
+		<div type-ahead detail="detail"></div>
+		</td>
+		<td >
+		<input type="text" class="form-control"  ng-model="detail.pmodel"/>
+		<input type="hidden" class="form-control"  ng-model="detail.productID"/>
+		</td>
+		<td ><input type="text" class="form-control" style="width:50px;" ng-model="detail.num"/></td>
+		<td ><input type="text" class="form-control" style="width:70px;" ng-model="detail.sprice"/></td>
+		<td ><input type="text" class="form-control" style="width:70px;" ng-model="detail.tprice"/></td>
+		<td >
+		<button class="btn btn-xs btn-primary" ng-click="setOptions(detail)">规格</button><button class="btn btn-xs btn-primary" ng-click="remove(detail)">删除</button>
+		</td>
+	</tr>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="specModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       <from id="templform" style="display: table;" class="form-inline">
+			<div style="width:200px; float:left;">
+				<img class="imgBox" width="200" ng-src="{{temImg}}">
+			</div>
+			<div id="" style="width:200px;float:right;">
+				<table class="table table-border">
+				<tbody>
+				<tr ng-repeat="spec in temOptions">
+				<td>
+				<div class="form-group">
+				<label>{{spec.specKey}}</label><input type="text" ng-model="spec.specValue"/>
+				</div>
+				</td>
+				</tr>
+				</tbody>
+				</table>
+				<p style="color:#f00">非标准机请认真填写相关规格。</p>
+			</div>
+		</from>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="saveSpec()" data-dismiss="modal">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{{details}}

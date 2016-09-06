@@ -1,0 +1,69 @@
+<div class="container-fluid height100">
+    	<div class="row height100">
+            <div class="col-md-4 height100 leftBox">
+               <div class="leftCenter">
+				<h4>追溯查询</h4>
+                <i class="icon-refresh flushBut"></i>
+                <div class="divider"></div>
+                <div class="searchBox">              
+                    <form class="form-inline">
+                      <div class="form-group">
+                       <select data-ui="primaryUI" data-style="btn-sm">
+                      	    <option>选择分厂</option>
+                       		<option>济南伊利</option>
+                            <option>定州伊利</option>
+                            <option>黄岗伊利</option>
+                       </select>
+                      </div>
+                      <div class="form-group">
+                      	<label>时间段</label>
+                        <input type="text" style="width:100px;" class="form-control" name="startdate" placeholder="2015-12-29">
+                        <label>-</label>
+                        <input type="text" style="width:100px;" class="form-control" id="orderid" placeholder="2015-12-30">                      
+                      </div>
+                      <div class="form-group">
+                      	 <label>箱码</label>
+                         <input type="text" style="width:140px;" class="form-control" id="orderid" placeholder="请输入箱码">
+                      </div>
+                      <button type="submit" style="vertical-align:bottom;" class="btn btn-sm btn-primary"><i class="icon-search"></i></button>
+                    </form>
+                </div>
+                <div class="listBox">
+                    <table class="table table-condensed table-striped table-hover">
+                        <tr>
+                            <th>书名</th>
+                            <th>作者</th>
+                            <th>价格</th>
+                            <th width="40">查看</th>
+                        </tr>
+                        <tr ng-repeat="item in slist">
+                        	<td>{{item.name}}</td>
+                            <td>{{item.author}}</td>
+                            <td>{{item.price}}</td>
+                            <td><a ui-sref="shop.main.info({id:item.id})" class="y-btn y-btn-detail"></a></td>
+                        </tr>
+                       
+                    </table>
+                </div>
+                <nav>
+                  <ul class="pagination pagination-sm">
+                    <li><a aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                  </ul>
+
+                  <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange()" first-text="首页" last-text="最后一页"></pager>
+                </nav>
+               </div>
+            </div>
+            <div  class="col-md-8 height100 rightBox">
+                <div ui-view></div>
+                <div ui-view="chart"></div> 
+                <div ui-view="data"></div> 
+            </div>
+        </div>        
+    </div>

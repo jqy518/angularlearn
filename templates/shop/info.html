@@ -1,0 +1,44 @@
+<div ng-controller="UploadCtrl">
+<form name="myForm">
+	    <div class ="uploadBox">
+            <img ng-src="{{croppedDataUrl}}" />
+        <button class="btn btn-success" data-toggle="modal" data-target="#myModal">上传头像</button>
+        </div>
+        
+
+        <button ng-click="upload(croppedDataUrl)" class="btn btn-primary">提交</button> 
+            
+        <span class="progress" ng-show="progress >= 0">
+          <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+        </span>
+        <span ng-show="result">Upload Successful</span>
+        <span class="err" ng-show="errorMsg">{{errorMsg}}111111</span>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <button ngf-select ng-model="picFile" class="btn btn-success" accept="image/*">选择图片</button>
+        <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+             class="cropArea">
+            <img-crop image="picFile  | ngfDataUrl"                 
+            result-image="croppedDataUrl" ng-init="croppedDataUrl=''" on-load-begin="loadBegin">
+            </img-crop>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div ng-controller="AddDetailController">
+	<div add-detail details="details" ptypes="ptypes"></div>
+</div>

@@ -1,0 +1,83 @@
+var bookApp = angular.module("bookApp",["ui.router","shop.app"]);
+bookApp.config(["$stateProvider","$urlRouterProvider","$httpProvider",function($stateProvider,$urlRouterProvider,$httpProvider){
+	$httpProvider.defaults.headers.common["X-request-By"] = "bookApp";
+	$stateProvider
+	.state('shop',{
+		resolve:{
+			"shoplist":function($http){
+				return $http({
+					url:"/bookApp/data/shoplist.php",
+					method:"GET"
+				})
+			}
+		},
+		abstract: true,
+		url:"/shop",
+		templateUrl:"templates/shop/list.html",
+		controller:"ShopListController"
+	})
+	.state('shop.main',{
+		url:"/:id",
+		views:{
+			"":{
+				templateUrl:"templates/shop/main.html",
+				controller:"ShopMainController"
+			},
+			"butbox@shop.main":{
+				templateUrl:"templates/common/innerButns.html"
+			},
+			"content@shop.main":{
+				template:"<div>adsfasdfasdfasdfs</div>"
+			}
+		}
+		
+	})
+	.state('shop.author',{
+		url:"/author/:id",
+		views:{
+			"":{
+				templateUrl:"templates/shop/main.html",
+				controller:"ShopAuthorController"
+			},
+			"butbox@shop.author":{
+				templateUrl:"templates/common/innerButns.html"
+			},
+			"content@shop.author":{
+				template:"<div>fffffffffffffffffff</div>"
+			}
+		}
+	})
+	.state('shop.samebook',{
+		views:{
+			"":{
+				templateUrl:"templates/shop/main.html",
+				controller:"ShopSameBookController"
+			},
+			"butbox@shop.samebook":{
+				templateUrl:"templates/common/innerButns.html"
+			},
+			"content@shop.samebook":{
+				template:"<div>qqqqqqqqqq</div>"
+			}
+		}
+	})
+	.state('shop.discussion',{
+		views:{
+			"":{
+				templateUrl:"templates/shop/main.html",
+				controller:"ShopDiscussionController"
+			},
+			"butbox@shop.discussion":{
+				templateUrl:"templates/common/innerButns.html"
+			},
+			"content@shop.discussion":{
+				template:"<div>qqqqqqqqqq</div>"
+			}
+		}
+	})
+}]);
+bookApp.controller("HeaderController",["$scope",function($scope){
+	$scope.buttons={
+		"name":"zhangsan"
+	}
+}]);
